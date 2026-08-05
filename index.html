@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Gallery · two per row</title>
+  <title>Video Gallery · Pink background</title>
   <style>
     /* ── reset & base ── */
     * {
@@ -13,7 +13,7 @@
     }
 
     body {
-      background: #1e2a3a;  /* custom background colour — deep slate blue */
+      background: #f8c8d8;  /* soft pink background — main colour */
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
       padding: 2rem 1.5rem;
       min-height: 100vh;
@@ -25,12 +25,12 @@
     .container {
       max-width: 1100px;
       width: 100%;
-      background: rgba(22, 28, 40, 0.7);  /* semi-transparent card */
-      backdrop-filter: blur(4px);
+      background: rgba(255, 245, 248, 0.75);  /* light pinkish glass */
+      backdrop-filter: blur(6px);
       border-radius: 40px;
       padding: 2rem 2rem 2.2rem;
-      box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 25px 50px -10px rgba(180, 60, 100, 0.25);
+      border: 1px solid rgba(255, 220, 230, 0.6);
     }
 
     /* header */
@@ -41,7 +41,7 @@
     .header h1 {
       font-size: 2.2rem;
       font-weight: 600;
-      color: #f0f6fc;
+      color: #7a3b4b;
       letter-spacing: -0.02em;
       display: flex;
       align-items: center;
@@ -50,17 +50,17 @@
     }
 
     .header h1 span {
-      background: #2d3b4f;
+      background: #f5d0db;
       padding: 0.2rem 1rem;
       border-radius: 40px;
       font-size: 0.9rem;
       font-weight: 500;
-      color: #b6c8e0;
-      border: 1px solid #3e4d64;
+      color: #8f4a5e;
+      border: 1px solid #f0b8cc;
     }
 
     .sub {
-      color: #b6c8e0;
+      color: #a15a70;
       font-size: 1rem;
       margin-top: 0.3rem;
       opacity: 0.9;
@@ -75,25 +75,25 @@
 
     /* video card */
     .video-item {
-      background: #0f1620;
+      background: #fff7fa;
       border-radius: 24px;
       overflow: hidden;
-      border: 1px solid #2d3b4f;
+      border: 1px solid #fad0dd;
       transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 20px rgba(200, 80, 120, 0.15);
     }
 
     .video-item:hover {
       transform: translateY(-4px);
-      border-color: #6d8fc6;
-      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.7);
+      border-color: #e68aad;
+      box-shadow: 0 16px 30px rgba(200, 80, 120, 0.25);
     }
 
     .video-wrapper {
       position: relative;
       width: 100%;
       padding-bottom: 56.25%; /* 16:9 */
-      background: #0b1119;
+      background: #f7e1ea;
     }
 
     .video-wrapper video {
@@ -103,20 +103,20 @@
       width: 100%;
       height: 100%;
       display: block;
-      background: #0b1119;
+      background: #f7e1ea;
       object-fit: contain;
     }
 
     /* video meta */
     .video-meta {
       padding: 0.9rem 1.2rem 1.2rem;
-      background: #0f1620;
+      background: #fff7fa;
     }
 
     .video-title {
       font-weight: 500;
       font-size: 1.1rem;
-      color: #e8edf5;
+      color: #632f40;
       display: flex;
       align-items: center;
       flex-wrap: wrap;
@@ -124,8 +124,8 @@
     }
 
     .badge {
-      background: #1f6feb;
-      color: white;
+      background: #e88aaa;
+      color: #fff;
       font-size: 0.6rem;
       font-weight: 600;
       padding: 0.15rem 0.7rem;
@@ -140,7 +140,7 @@
       align-items: center;
       gap: 1rem 1.4rem;
       margin-top: 0.4rem;
-      color: #8fa1c0;
+      color: #af7389;
       font-size: 0.8rem;
     }
 
@@ -157,35 +157,35 @@
     /* ── footer ── */
     .footer-note {
       margin-top: 2.8rem;
-      border-top: 1px solid #2d3b4f;
+      border-top: 1px solid #f5ccdb;
       padding-top: 1.5rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      color: #a0b4d0;
+      color: #9f657b;
       font-size: 0.9rem;
     }
 
     .footer-note a {
-      color: #7aa2e7;
+      color: #b35d7c;
       text-decoration: none;
       font-weight: 500;
       transition: 0.15s;
     }
 
     .footer-note a:hover {
-      color: #a6c2ff;
+      color: #d46b92;
       text-decoration: underline;
     }
 
     .footer-note .hint {
-      background: #1d2a3a;
+      background: #f5d0db;
       padding: 0.2rem 1rem;
       border-radius: 30px;
-      border: 1px solid #2f4058;
+      border: 1px solid #f0b8cc;
       font-size: 0.75rem;
-      color: #b0c6e0;
+      color: #8f4a5e;
     }
 
     /* ── responsive: stack on small screens ── */
@@ -215,9 +215,9 @@
     <div class="header">
       <h1>
         🎬 Video Gallery
-        <span>2 per row</span>
+        <span>pink · 2 per row</span>
       </h1>
-      <div class="sub">background: <strong style="color:#d6e2f5;">#1e2a3a</strong> · hosted on GitHub Pages</div>
+      <div class="sub">background: <strong style="color:#b34e6e;">#f8c8d8</strong> · hosted on GitHub Pages</div>
     </div>
 
     <!-- grid: two videos per row -->
@@ -226,7 +226,7 @@
       <!-- ─── VIDEO 1 ─── -->
       <div class="video-item">
         <div class="video-wrapper">
-          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23131e2b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%23809ac0'%3E🐇 Big Buck%3C/text%3E%3C/svg%3E">
+          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23f7dce6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%23b35d7c'%3E🐇 Big Buck%3C/text%3E%3C/svg%3E">
             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
             Your browser does not support video.
           </video>
@@ -246,7 +246,7 @@
       <!-- ─── VIDEO 2 ─── -->
       <div class="video-item">
         <div class="video-wrapper">
-          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23131e2b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%23809ac0'%3E🤖 Tears%3C/text%3E%3C/svg%3E">
+          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23f7dce6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%23b35d7c'%3E🤖 Tears%3C/text%3E%3C/svg%3E">
             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4">
             Your browser does not support video.
           </video>
@@ -266,7 +266,7 @@
       <!-- ─── VIDEO 3 ─── -->
       <div class="video-item">
         <div class="video-wrapper">
-          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23131e2b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%23809ac0'%3E🔥 Blazes%3C/text%3E%3C/svg%3E">
+          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23f7dce6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%23b35d7c'%3E🔥 Blazes%3C/text%3E%3C/svg%3E">
             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
             Your browser does not support video.
           </video>
@@ -286,7 +286,7 @@
       <!-- ─── VIDEO 4 ─── -->
       <div class="video-item">
         <div class="video-wrapper">
-          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23131e2b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%23809ac0'%3E🌊 Escape%3C/text%3E%3C/svg%3E">
+          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23f7dce6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%23b35d7c'%3E🐘 Dream%3C/text%3E%3C/svg%3E">
             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
             Your browser does not support video.
           </video>
@@ -309,28 +309,28 @@
     <div class="footer-note">
       <div>
         <span style="margin-right: 6px;">📂</span> 
-        <strong style="color:#d6e2f5;">/videos/</strong> 
-        <span style="color:#8fa1c0;">— add your own .mp4 / .webm</span>
+        <strong style="color:#7a3b4b;">/videos/</strong> 
+        <span style="color:#af7389;">— add your own .mp4 / .webm</span>
       </div>
       <div>
         <a href="#" onclick="alert('Clone this repo, add videos to /videos, update the <source> src.')">⤵️ how to host</a>
-        <span style="margin:0 8px;color:#2d3b4f;">|</span>
+        <span style="margin:0 8px;color:#f0b8cc;">|</span>
         <a href="#" onclick="alert('Edit the video list: each .video-item contains a <video> with <source>.')">✏️ edit</a>
-        <span class="hint" style="margin-left: 12px;">bg #1e2a3a</span>
+        <span class="hint" style="margin-left: 12px;">bg #f8c8d8</span>
       </div>
     </div>
 
     <!-- tiny credit -->
-    <div style="margin-top: 1.2rem; font-size: 0.7rem; color: #4f6480; border-top: 1px solid #1f2d3f; padding-top: 0.9rem; display: flex; justify-content: space-between; flex-wrap: wrap;">
+    <div style="margin-top: 1.2rem; font-size: 0.7rem; color: #c48ba5; border-top: 1px solid #f5ccdb; padding-top: 0.9rem; display: flex; justify-content: space-between; flex-wrap: wrap;">
       <span>⚡ GitHub Pages · static video gallery</span>
-      <span>samples: <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/" target="_blank" style="color:#6d8fc6;text-decoration:none;">CC0</a></span>
+      <span>samples: <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/" target="_blank" style="color:#b35d7c;text-decoration:none;">CC0</a></span>
     </div>
 
   </div> <!-- end container -->
 
   <!-- small console reminder -->
   <script>
-    console.log('🎥 Two‑per‑row video gallery · background #1e2a3a');
+    console.log('🎥 Two‑per‑row video gallery · background #f8c8d8 (pink)');
     console.log('📁 Replace video src with your own files in /videos/');
   </script>
 </body>
