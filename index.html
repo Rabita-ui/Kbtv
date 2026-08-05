@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-  <title>Video Host · GitHub</title>
-  <!-- Simple, clean, responsive style -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Gallery · two per row</title>
   <style>
+    /* ── reset & base ── */
     * {
       margin: 0;
       padding: 0;
@@ -13,84 +13,87 @@
     }
 
     body {
-      background: #0d1117;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #1e2a3a;  /* custom background colour — deep slate blue */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      padding: 1.5rem;
     }
 
-    .card {
-      max-width: 1000px;
+    .container {
+      max-width: 1100px;
       width: 100%;
-      background: #161b22;
-      border-radius: 32px;
+      background: rgba(22, 28, 40, 0.7);  /* semi-transparent card */
+      backdrop-filter: blur(4px);
+      border-radius: 40px;
       padding: 2rem 2rem 2.2rem;
-      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.8);
-      border: 1px solid #30363d;
-      transition: 0.2s;
+      box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    h1 {
-      font-size: 1.9rem;
+    /* header */
+    .header {
+      margin-bottom: 2.2rem;
+    }
+
+    .header h1 {
+      font-size: 2.2rem;
       font-weight: 600;
-      letter-spacing: -0.02em;
       color: #f0f6fc;
+      letter-spacing: -0.02em;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.25rem;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.8rem;
     }
 
-    .subhead {
-      color: #8b949e;
-      font-size: 1rem;
-      font-weight: 400;
-      border-left: 2px solid #30363d;
-      padding-left: 0.75rem;
-      margin-left: 0.25rem;
-    }
-
-    .repo-badge {
-      display: inline-block;
-      background: #21262d;
-      border-radius: 20px;
-      padding: 0.2rem 0.9rem;
-      font-size: 0.75rem;
+    .header h1 span {
+      background: #2d3b4f;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
       font-weight: 500;
-      color: #8b949e;
-      border: 1px solid #30363d;
-      margin-left: 0.5rem;
+      color: #b6c8e0;
+      border: 1px solid #3e4d64;
     }
 
+    .sub {
+      color: #b6c8e0;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+      opacity: 0.9;
+    }
+
+    /* ── grid: 2 columns ── */
     .video-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 2.2rem;
-      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
     }
 
+    /* video card */
     .video-item {
-      background: #0d1117;
-      border-radius: 20px;
+      background: #0f1620;
+      border-radius: 24px;
       overflow: hidden;
-      border: 1px solid #21262d;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      border: 1px solid #2d3b4f;
+      transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     }
 
     .video-item:hover {
-      border-color: #58a6ff;
-      box-shadow: 0 8px 0 rgba(88, 166, 255, 0.08);
+      transform: translateY(-4px);
+      border-color: #6d8fc6;
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.7);
     }
 
     .video-wrapper {
       position: relative;
       width: 100%;
       padding-bottom: 56.25%; /* 16:9 */
-      background: #000;
-      background-color: #0d1117;
+      background: #0b1119;
     }
 
     .video-wrapper video {
@@ -100,40 +103,32 @@
       width: 100%;
       height: 100%;
       display: block;
-      background: #0a0e14;
+      background: #0b1119;
       object-fit: contain;
     }
 
-    /* custom controls are hidden, we use native for simplicity & reliability */
-    .video-wrapper video::-webkit-media-controls {
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
-    }
-
+    /* video meta */
     .video-meta {
-      padding: 1rem 1.2rem 1.2rem;
-      background: #161b22;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.8rem 1rem;
+      padding: 0.9rem 1.2rem 1.2rem;
+      background: #0f1620;
     }
 
     .video-title {
       font-weight: 500;
       font-size: 1.1rem;
-      color: #f0f6fc;
+      color: #e8edf5;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.6rem;
     }
 
-    .video-title .badge {
+    .badge {
       background: #1f6feb;
       color: white;
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: 600;
-      padding: 0.15rem 0.6rem;
+      padding: 0.15rem 0.7rem;
       border-radius: 30px;
       letter-spacing: 0.3px;
       text-transform: uppercase;
@@ -141,10 +136,12 @@
 
     .video-stats {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 1rem;
-      color: #8b949e;
-      font-size: 0.85rem;
+      gap: 1rem 1.4rem;
+      margin-top: 0.4rem;
+      color: #8fa1c0;
+      font-size: 0.8rem;
     }
 
     .video-stats span {
@@ -153,125 +150,105 @@
       gap: 4px;
     }
 
-    .video-stats .icon {
-      font-size: 1.1rem;
-      line-height: 1;
+    .icon {
+      font-size: 1rem;
     }
 
+    /* ── footer ── */
     .footer-note {
-      margin-top: 2.2rem;
-      border-top: 1px solid #21262d;
-      padding-top: 1.4rem;
+      margin-top: 2.8rem;
+      border-top: 1px solid #2d3b4f;
+      padding-top: 1.5rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      color: #8b949e;
+      color: #a0b4d0;
       font-size: 0.9rem;
     }
 
     .footer-note a {
-      color: #58a6ff;
+      color: #7aa2e7;
       text-decoration: none;
       font-weight: 500;
       transition: 0.15s;
     }
 
     .footer-note a:hover {
-      color: #79c0ff;
+      color: #a6c2ff;
       text-decoration: underline;
     }
 
-    .gh-icon {
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 6px;
+    .footer-note .hint {
+      background: #1d2a3a;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      border: 1px solid #2f4058;
+      font-size: 0.75rem;
+      color: #b0c6e0;
     }
 
-    /* responsive */
-    @media (max-width: 600px) {
-      .card {
+    /* ── responsive: stack on small screens ── */
+    @media (max-width: 680px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      .container {
         padding: 1.2rem;
       }
-      h1 {
-        font-size: 1.5rem;
-        flex-wrap: wrap;
-      }
-      .subhead {
-        border-left: none;
-        padding-left: 0;
-        margin-left: 0;
-        width: 100%;
-        margin-top: 0.2rem;
-      }
-      .video-meta {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .video-stats {
-        width: 100%;
-        justify-content: flex-start;
-        gap: 1.2rem;
+      .header h1 {
+        font-size: 1.6rem;
       }
       .footer-note {
         flex-direction: column;
-        gap: 0.6rem;
         align-items: flex-start;
+        gap: 0.8rem;
       }
-    }
-
-    /* placeholder message if no videos (but we have 3) */
-    .empty-state {
-      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="card">
+  <div class="container">
 
     <!-- header -->
-    <header>
+    <div class="header">
       <h1>
-        📼 Video Host
-        <span class="subhead">GitHub Pages</span>
-        <span class="repo-badge">repository</span>
+        🎬 Video Gallery
+        <span>2 per row</span>
       </h1>
-      <p style="color: #8b949e; margin-top: 0.3rem; font-size: 0.95rem;">
-        Upload your videos to the <strong style="color:#f0f6fc;">/videos</strong> folder &amp; they appear here.
-      </p>
-    </header>
+      <div class="sub">background: <strong style="color:#d6e2f5;">#1e2a3a</strong> · hosted on GitHub Pages</div>
+    </div>
 
-    <!-- video list -->
+    <!-- grid: two videos per row -->
     <div class="video-grid">
 
-      <!-- video 1 -->
+      <!-- ─── VIDEO 1 ─── -->
       <div class="video-item">
         <div class="video-wrapper">
-          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23161b22'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='16' fill='%238b949e'%3E🎬 sample%3C/text%3E%3C/svg%3E">
-            <!-- sample video: Big Buck Bunny (CC0) from github assets -->
+          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23131e2b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%23809ac0'%3E🐇 Big Buck%3C/text%3E%3C/svg%3E">
             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            Your browser does not support video.
           </video>
         </div>
         <div class="video-meta">
           <div class="video-title">
             <span>🐇 Big Buck Bunny</span>
-            <span class="badge">sample</span>
+            <span class="badge">CC0</span>
           </div>
           <div class="video-stats">
             <span><span class="icon">⏱️</span> 9:56</span>
             <span><span class="icon">👁️</span> 2.4k</span>
-            <span><span class="icon">📅</span> 2026</span>
           </div>
         </div>
       </div>
 
-      <!-- video 2 -->
+      <!-- ─── VIDEO 2 ─── -->
       <div class="video-item">
         <div class="video-wrapper">
-          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23161b22'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='16' fill='%238b949e'%3E🌊 tears of steel%3C/text%3E%3C/svg%3E">
+          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23131e2b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%23809ac0'%3E🤖 Tears%3C/text%3E%3C/svg%3E">
             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            Your browser does not support video.
           </video>
         </div>
         <div class="video-meta">
@@ -282,17 +259,16 @@
           <div class="video-stats">
             <span><span class="icon">⏱️</span> 12:14</span>
             <span><span class="icon">👁️</span> 1.8k</span>
-            <span><span class="icon">📅</span> 2025</span>
           </div>
         </div>
       </div>
 
-      <!-- video 3 -->
+      <!-- ─── VIDEO 3 ─── -->
       <div class="video-item">
         <div class="video-wrapper">
-          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23161b22'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='16' fill='%238b949e'%3E🚀 for bigger%3C/text%3E%3C/svg%3E">
+          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23131e2b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%23809ac0'%3E🔥 Blazes%3C/text%3E%3C/svg%3E">
             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            Your browser does not support video.
           </video>
         </div>
         <div class="video-meta">
@@ -303,45 +279,59 @@
           <div class="video-stats">
             <span><span class="icon">⏱️</span> 0:25</span>
             <span><span class="icon">👁️</span> 5.6k</span>
-            <span><span class="icon">📅</span> 2026</span>
           </div>
         </div>
       </div>
 
-      <!-- you can add more videos by copying the .video-item block -->
-      <!-- and pointing the src to your own video file in /videos/ -->
+      <!-- ─── VIDEO 4 ─── -->
+      <div class="video-item">
+        <div class="video-wrapper">
+          <video controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23131e2b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%23809ac0'%3E🌊 Escape%3C/text%3E%3C/svg%3E">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+            Your browser does not support video.
+          </video>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">
+            <span>🐘 Elephants Dream</span>
+            <span class="badge">CC0</span>
+          </div>
+          <div class="video-stats">
+            <span><span class="icon">⏱️</span> 10:53</span>
+            <span><span class="icon">👁️</span> 3.1k</span>
+          </div>
+        </div>
+      </div>
 
-    </div>
+    </div> <!-- end grid -->
 
-    <!-- footer with github instructions -->
+    <!-- footer -->
     <div class="footer-note">
       <div>
-        <span class="gh-icon">📂</span> 
-        <strong style="color:#c9d1d9;">/videos/</strong> 
-        <span style="color:#8b949e;">— add your own .mp4, .webm, .ogg</span>
+        <span style="margin-right: 6px;">📂</span> 
+        <strong style="color:#d6e2f5;">/videos/</strong> 
+        <span style="color:#8fa1c0;">— add your own .mp4 / .webm</span>
       </div>
       <div>
-        <a href="#" onclick="alert('Clone this repo and add videos to the /videos folder. Update the src attributes.')">⤵️ how to host</a>
-        <span style="margin:0 8px;color:#30363d;">|</span>
-        <a href="#" onclick="alert('Edit the video list in the HTML: each .video-item contains a <video> with <source src=\'...\'>')">✏️ edit</a>
+        <a href="#" onclick="alert('Clone this repo, add videos to /videos, update the <source> src.')">⤵️ how to host</a>
+        <span style="margin:0 8px;color:#2d3b4f;">|</span>
+        <a href="#" onclick="alert('Edit the video list: each .video-item contains a <video> with <source>.')">✏️ edit</a>
+        <span class="hint" style="margin-left: 12px;">bg #1e2a3a</span>
       </div>
     </div>
 
-    <!-- small note: the videos above are from public domain samples (CC0) -->
-    <div style="margin-top: 1rem; font-size: 0.75rem; color: #484f58; border-top: 1px solid #21262d; padding-top: 0.9rem; display: flex; flex-wrap: wrap; justify-content: space-between;">
-      <span>⚡ hosted on GitHub Pages · static video gallery</span>
-      <span>sample videos: <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/" target="_blank" style="color:#58a6ff;text-decoration:none;">CC0</a></span>
+    <!-- tiny credit -->
+    <div style="margin-top: 1.2rem; font-size: 0.7rem; color: #4f6480; border-top: 1px solid #1f2d3f; padding-top: 0.9rem; display: flex; justify-content: space-between; flex-wrap: wrap;">
+      <span>⚡ GitHub Pages · static video gallery</span>
+      <span>samples: <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/" target="_blank" style="color:#6d8fc6;text-decoration:none;">CC0</a></span>
     </div>
-  </div>
 
-  <!-- optional: small script to show dynamic year in footer, just for fun -->
+  </div> <!-- end container -->
+
+  <!-- small console reminder -->
   <script>
-    (function() {
-      // update any "2026" to current year? not needed, but we keep it static.
-      // simple console reminder
-      console.log('🎥 Video Host — ready to deploy on GitHub Pages.');
-      console.log('📁 Add your videos to the /videos folder and update the <source> src attributes.');
-    })();
+    console.log('🎥 Two‑per‑row video gallery · background #1e2a3a');
+    console.log('📁 Replace video src with your own files in /videos/');
   </script>
 </body>
 </html>
