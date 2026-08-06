@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Subscribe · Support</title>
+  <title>Subscribe · Payment</title>
   <style>
     * {
       margin: 0;
@@ -64,13 +64,14 @@
     }
 
     .qr-image {
-      max-width: 200px;
+      max-width: 220px;
       width: 100%;
       height: auto;
       border-radius: 12px;
       background: #fff;
       padding: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid #fad0dd;
     }
 
     .qr-label {
@@ -79,15 +80,31 @@
       font-size: 1rem;
     }
 
+    .merchant-name {
+      color: #7a3b4b;
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: #fff7fa;
+      padding: 0.4rem 1.5rem;
+      border-radius: 30px;
+      border: 1px solid #fad0dd;
+      display: inline-block;
+    }
+
     .upi-id-display {
       background: #fff7fa;
-      padding: 0.5rem 1.2rem;
+      padding: 0.4rem 1.2rem;
       border-radius: 30px;
       border: 1px solid #fad0dd;
       color: #7a3b4b;
       font-weight: 500;
       font-size: 0.9rem;
       display: inline-block;
+    }
+
+    .qr-hint {
+      color: #af7389;
+      font-size: 0.7rem;
       margin-top: 0.2rem;
     }
 
@@ -156,6 +173,23 @@
       text-decoration: underline;
     }
 
+    .upi-apps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1rem;
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      color: #8f5a6e;
+    }
+
+    .upi-apps span {
+      background: #fff7fa;
+      padding: 0.15rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid #f5ccdb;
+    }
+
     @media (max-width: 480px) {
       .payment-card {
         padding: 2rem 1.2rem;
@@ -164,7 +198,7 @@
         font-size: 1.6rem;
       }
       .qr-image {
-        max-width: 150px;
+        max-width: 170px;
       }
     }
   </style>
@@ -174,37 +208,58 @@
   <div class="payment-card">
 
     <h1>💖 Support the Channel</h1>
-    <p class="subhead">Your contribution helps us create more content</p>
+    <p class="subhead">Scan the QR code or pay via UPI</p>
 
-    <!-- QR Code Section -->
+    <!-- QR Code Section with your uploaded image -->
     <div class="qr-section">
+      <!-- 
+        ✅ Using your QR code image uploaded to GitHub
+        The path assumes Qrc.png is in the root of your repository
+      -->
       <img 
-        src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=thongamlanchenbi11@okicici&pn=Lanchenbi%20Thongam&am=100&cu=INR" 
+        src="Qrc.png" 
         alt="UPI Payment QR Code" 
         class="qr-image"
       />
-      <div class="qr-label">📱 Scan to pay</div>
-      <div style="font-weight:600; color:#7a3b4b; font-size:1rem;">Lanchenbi Thongam</div>
-      <div class="upi-id-display">thongamlanchenbi11@okicici</div>
-      <div style="font-size:0.7rem; color:#af7389; margin-top:0.2rem;">Scan with any UPI app</div>
+      
+      <div class="merchant-name">🏪 KABICHANDRA ENTERPRISES</div>
+      
+      <div class="upi-id-display">📱 9862728802m@pnb</div>
+      
+      <div class="qr-hint">Scan with any UPI app</div>
+      
+      <div class="upi-apps">
+        <span>📱 Google Pay</span>
+        <span>📱 PhonePe</span>
+        <span>📱 Paytm</span>
+        <span>📱 BHIM</span>
+        <span>📱 Any UPI App</span>
+      </div>
     </div>
 
-    <!-- Payment Link -->
-    <a href="upi://pay?pa=thongamlanchenbi11@okicici&pn=Lanchenbi%20Thongam&am=100&cu=INR" class="payment-link-btn">
+    <!-- Direct UPI Payment Link -->
+    <a href="upi://pay?pa=9862728802m@pnb&pn=KABICHANDRA%20ENTERPRISES&am=100&cu=INR" class="payment-link-btn">
       💳 Pay ₹100 via UPI
     </a>
 
     <a href="index.html" class="back-link">← Back to videos</a>
 
     <div class="footer-note">
-      <span>🔒 secure UPI payment</span>
+      <span>🔒 Secure UPI Payment</span>
       <span>·</span>
-      <a href="index.html">🏠 home</a>
+      <a href="index.html">🏠 Home</a>
       <span>·</span>
       <span>pink · GitHub Pages</span>
     </div>
 
   </div>
+
+  <script>
+    console.log('💖 Payment page loaded with QR code from GitHub');
+    console.log('🏪 Merchant: KABICHANDRA ENTERPRISES');
+    console.log('📱 UPI: 9862728802m@pnb');
+    console.log('📁 QR code image: Qrc.png (in root folder)');
+  </script>
 
 </body>
 </html>
