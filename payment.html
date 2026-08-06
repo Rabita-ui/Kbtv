@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Subscribe · Payment</title>
+  <title>Subscribe · Support</title>
   <style>
-    /* ── reset & base ── */
     * {
       margin: 0;
       padding: 0;
@@ -22,7 +21,6 @@
       padding: 2rem 1.5rem;
     }
 
-    /* ── payment card ── */
     .payment-card {
       background: #fff7fa;
       max-width: 520px;
@@ -53,7 +51,6 @@
       margin-bottom: 1.8rem;
     }
 
-    /* ── QR code section ── */
     .qr-section {
       background: #f5e1ea;
       border-radius: 24px;
@@ -94,55 +91,6 @@
       margin-top: 0.2rem;
     }
 
-    .qr-hint {
-      color: #af7389;
-      font-size: 0.7rem;
-    }
-
-    /* ── dropdown (UPI payment) ── */
-    .upi-section {
-      margin-bottom: 1.8rem;
-      text-align: left;
-    }
-
-    .upi-section label {
-      display: block;
-      color: #7a3b4b;
-      font-weight: 500;
-      font-size: 0.9rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .upi-select {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border-radius: 30px;
-      border: 2px solid #fad0dd;
-      background: #fff7fa;
-      font-size: 1rem;
-      color: #632f40;
-      font-weight: 500;
-      appearance: none;
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b35d7c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      background-size: 1.2rem;
-      cursor: pointer;
-      transition: border-color 0.15s;
-    }
-
-    .upi-select:hover,
-    .upi-select:focus {
-      border-color: #e68aad;
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(230, 138, 173, 0.15);
-    }
-
-    .upi-select option {
-      padding: 0.6rem;
-    }
-
-    /* ── payment link button ── */
     .payment-link-btn {
       display: inline-block;
       background: #e88aaa;
@@ -170,7 +118,6 @@
       transform: scale(0.97);
     }
 
-    /* ── back link ── */
     .back-link {
       display: inline-block;
       margin-top: 1.8rem;
@@ -188,7 +135,6 @@
       text-decoration: underline;
     }
 
-    /* ── footer note ── */
     .footer-note {
       margin-top: 2rem;
       padding-top: 1.2rem;
@@ -210,7 +156,6 @@
       text-decoration: underline;
     }
 
-    /* ── responsive ── */
     @media (max-width: 480px) {
       .payment-card {
         padding: 2rem 1.2rem;
@@ -228,57 +173,29 @@
 
   <div class="payment-card">
 
-    <!-- header -->
-    <h1>💖 Subscribe</h1>
-    <p class="subhead">Support the channel — scan or pay via UPI</p>
+    <h1>💖 Support the Channel</h1>
+    <p class="subhead">Your contribution helps us create more content</p>
 
-    <!-- QR code section with your UPI details -->
+    <!-- QR Code Section -->
     <div class="qr-section">
-      <!-- 
-        ⚠️ IMPORTANT: Replace the src below with your actual QR code image.
-        Save your QR code image (e.g., qr-code.png) in the same folder 
-        and use: src="qr-code.png"
-      -->
       <img 
         src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=thongamlanchenbi11@okicici&pn=Lanchenbi%20Thongam&am=100&cu=INR" 
         alt="UPI Payment QR Code" 
         class="qr-image"
       />
       <div class="qr-label">📱 Scan to pay</div>
-      <div class="upi-id-display">Lanchenbi Thongam</div>
-      <div style="font-size:0.8rem; color:#7a3b4b; font-weight:500; background:#f5e1ea; padding:0.2rem 1rem; border-radius:20px;">
-        thongamlanchenbi11@okicici
-      </div>
-      <div class="qr-hint">Scan with any UPI app (Google Pay, PhonePe, Paytm, etc.)</div>
+      <div style="font-weight:600; color:#7a3b4b; font-size:1rem;">Lanchenbi Thongam</div>
+      <div class="upi-id-display">thongamlanchenbi11@okicici</div>
+      <div style="font-size:0.7rem; color:#af7389; margin-top:0.2rem;">Scan with any UPI app</div>
     </div>
 
-    <!-- UPI Payment Method Dropdown -->
-    <div class="upi-section">
-      <label for="upi-method">Choose UPI App</label>
-      <select id="upi-method" class="upi-select">
-        <option value="google-pay">Google Pay</option>
-        <option value="phonepe">PhonePe</option>
-        <option value="paytm">Paytm</option>
-        <option value="amazon-pay">Amazon Pay</option>
-        <option value="whatsapp-pay">WhatsApp Pay</option>
-        <option value="other">Other UPI App</option>
-      </select>
-    </div>
-
-    <!-- Payment link button -->
-    <a 
-      href="#" 
-      class="payment-link-btn" 
-      id="payNowBtn"
-      onclick="handlePayment(event)"
-    >
-      💳 Pay Now
+    <!-- Payment Link -->
+    <a href="upi://pay?pa=thongamlanchenbi11@okicici&pn=Lanchenbi%20Thongam&am=100&cu=INR" class="payment-link-btn">
+      💳 Pay ₹100 via UPI
     </a>
 
-    <!-- Back to gallery -->
     <a href="index.html" class="back-link">← Back to videos</a>
 
-    <!-- footer -->
     <div class="footer-note">
       <span>🔒 secure UPI payment</span>
       <span>·</span>
@@ -288,66 +205,6 @@
     </div>
 
   </div>
-
-  <script>
-    /**
-     * Handles the payment action based on the selected UPI method.
-     * UPI ID: thongamlanchenbi11@okicici
-     * Payee: Lanchenbi Thongam
-     */
-    function handlePayment(event) {
-      event.preventDefault();
-
-      // ── YOUR UPI DETAILS ──
-      const UPI_ID = 'thongamlanchenbi11@okicici';
-      const AMOUNT = '100';                // Change this to your desired amount
-      const PAYEE_NAME = 'Lanchenbi Thongam';
-      // ─────────────────────
-
-      const selected = document.getElementById('upi-method').value;
-      
-      // Build the UPI deep link
-      const upiLink = `upi://pay?pa=${UPI_ID}&pn=${PAYEE_NAME}&am=${AMOUNT}&cu=INR`;
-
-      // Map dropdown selection to app-specific UPI links
-      const appLinks = {
-        'google-pay': `https://pay.google.com/gp/p/ui/pay?pa=${UPI_ID}&pn=${PAYEE_NAME}&am=${AMOUNT}&cu=INR`,
-        'phonepe': `https://phone.pe/pay?pa=${UPI_ID}&pn=${PAYEE_NAME}&am=${AMOUNT}&cu=INR`,
-        'paytm': `https://paytm.com/pay?pa=${UPI_ID}&pn=${PAYEE_NAME}&am=${AMOUNT}&cu=INR`,
-        'amazon-pay': `https://pay.amazon.in/pay?pa=${UPI_ID}&pn=${PAYEE_NAME}&am=${AMOUNT}&cu=INR`,
-        'whatsapp-pay': `https://wa.me/91${UPI_ID.replace('@okicici', '')}?text=Pay%20${AMOUNT}%20to%20${PAYEE_NAME}`,
-        'other': upiLink
-      };
-
-      // Get the link for the selected app, fallback to generic UPI
-      const paymentUrl = appLinks[selected] || upiLink;
-
-      // For testing on desktop: show alert with the UPI link
-      // On mobile, this will open the respective app
-      if (window.innerWidth < 768) {
-        // Mobile: try to open the app
-        window.location.href = paymentUrl;
-      } else {
-        // Desktop: show the UPI link and QR info
-        alert(
-          `💳 UPI Payment\n\n` +
-          `Payee: ${PAYEE_NAME}\n` +
-          `UPI ID: ${UPI_ID}\n` +
-          `Amount: ₹${AMOUNT}\n` +
-          `Selected: ${selected}\n\n` +
-          `On mobile, this will open your UPI app automatically.\n` +
-          `You can also scan the QR code above.`
-        );
-        // Also open in new tab for desktop testing
-        window.open(paymentUrl, '_blank');
-      }
-    }
-
-    console.log('💖 Payment page loaded.');
-    console.log('📱 UPI ID: thongamlanchenbi11@okicici');
-    console.log('👤 Payee: Lanchenbi Thongam');
-    console.log('🔄 Replace QR code image with your own if needed.');
-  </script>
 
 </body>
 </html>
