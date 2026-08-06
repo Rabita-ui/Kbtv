@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Video Gallery · YouTube embed</title>
+  <title>Video Gallery · Subscribe</title>
   <style>
     /* ── reset & base ── */
     * {
@@ -139,12 +139,46 @@
       text-transform: uppercase;
     }
 
+    /* ── SUBSCRIBE BUTTON ── */
+    .subscribe-area {
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .subscribe-btn {
+      display: inline-block;
+      background: #e88aaa;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.3rem 1.2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      border: 1px solid #d47a9a;
+      transition: background 0.15s, transform 0.1s;
+      box-shadow: 0 2px 6px rgba(200, 80, 120, 0.2);
+      letter-spacing: 0.3px;
+    }
+
+    .subscribe-btn:hover {
+      background: #d47a9a;
+      transform: scale(1.03);
+      box-shadow: 0 4px 10px rgba(200, 80, 120, 0.3);
+    }
+
+    .subscribe-btn:active {
+      transform: scale(0.97);
+    }
+
     .video-stats {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 1rem 1.4rem;
-      margin-top: 0.4rem;
+      margin-top: 0.2rem;
       color: #af7389;
       font-size: 0.8rem;
     }
@@ -210,10 +244,151 @@
         align-items: flex-start;
         gap: 0.8rem;
       }
+      .subscribe-area {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+    }
+
+    /* ── payment page styles (hidden by default, shown via anchor) ── */
+    .payment-page {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(248, 200, 216, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .payment-page:target {
+      display: flex;
+    }
+
+    .payment-card {
+      background: #fff7fa;
+      max-width: 460px;
+      width: 100%;
+      padding: 2.5rem 2rem;
+      border-radius: 40px;
+      text-align: center;
+      border: 1px solid #fad0dd;
+      box-shadow: 0 30px 60px rgba(180, 60, 100, 0.25);
+      position: relative;
+    }
+
+    .payment-card h2 {
+      color: #7a3b4b;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .payment-card p {
+      color: #a15a70;
+      margin-bottom: 1.5rem;
+    }
+
+    .payment-card .qr-placeholder {
+      background: #f5e1ea;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin: 1rem 0 1.5rem;
+      border: 2px dashed #e68aad;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .payment-card .qr-placeholder .qr-symbol {
+      font-size: 4rem;
+      line-height: 1;
+    }
+
+    .payment-card .qr-placeholder .qr-text {
+      color: #7a3b4b;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .payment-link {
+      display: inline-block;
+      background: #e88aaa;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.7rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      border: 1px solid #d47a9a;
+      transition: background 0.15s;
+      margin-top: 0.5rem;
+    }
+
+    .payment-link:hover {
+      background: #d47a9a;
+    }
+
+    .close-payment {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      color: #af7389;
+      text-decoration: none;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .close-payment:hover {
+      color: #7a3b4b;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-top: 1.2rem;
+      color: #b35d7c;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-home:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
+
+  <!-- ─── PAYMENT PAGE (hidden by default, shown via #payment) ─── -->
+  <div id="payment" class="payment-page">
+    <div class="payment-card">
+      <a href="#" class="close-payment">&times;</a>
+      <h2>💖 Subscribe</h2>
+      <p>Support the channel — scan or click below</p>
+
+      <!-- QR Code placeholder -->
+      <div class="qr-placeholder">
+        <div class="qr-symbol">📱</div>
+        <div class="qr-text">Scan to pay</div>
+        <div style="font-size:0.7rem; color:#af7389; margin-top:4px;">(QR code image here)</div>
+      </div>
+
+      <!-- Payment link -->
+      <a href="#" class="payment-link" onclick="alert('🔗 Payment link: https://your-payment-link.com/subscribe'); return false;">
+        💳 Payment Link
+      </a>
+
+      <a href="#" class="back-home">← Back to videos</a>
+    </div>
+  </div>
+
+  <!-- ─── MAIN CONTAINER ─── -->
   <div class="container">
 
     <!-- header -->
@@ -243,6 +418,11 @@
             <span>🎭 Goro Gee Chengleima (Vol.2) Ep.8</span>
             <span class="badge">YouTube</span>
           </div>
+          <!-- SUBSCRIBE AREA -->
+          <div class="subscribe-area">
+            <a href="#payment" class="subscribe-btn">🔔 Subscribe</a>
+            <span style="font-size:0.7rem; color:#af7389;">support the series</span>
+          </div>
           <div class="video-stats">
             <span><span class="icon">👁️</span> 73k views</span>
             <span><span class="icon">📅</span> 23h ago</span>
@@ -264,6 +444,11 @@
             <span>🐇 Big Buck Bunny</span>
             <span class="badge">CC0</span>
           </div>
+          <!-- SUBSCRIBE AREA -->
+          <div class="subscribe-area">
+            <a href="#payment" class="subscribe-btn">🔔 Subscribe</a>
+            <span style="font-size:0.7rem; color:#af7389;">support the channel</span>
+          </div>
           <div class="video-stats">
             <span><span class="icon">⏱️</span> 9:56</span>
             <span><span class="icon">👁️</span> 2.4k</span>
@@ -284,6 +469,11 @@
             <span>🤖 Tears of Steel</span>
             <span class="badge">short</span>
           </div>
+          <!-- SUBSCRIBE AREA -->
+          <div class="subscribe-area">
+            <a href="#payment" class="subscribe-btn">🔔 Subscribe</a>
+            <span style="font-size:0.7rem; color:#af7389;">support the channel</span>
+          </div>
           <div class="video-stats">
             <span><span class="icon">⏱️</span> 12:14</span>
             <span><span class="icon">👁️</span> 1.8k</span>
@@ -303,6 +493,11 @@
           <div class="video-title">
             <span>🐘 Elephants Dream</span>
             <span class="badge">CC0</span>
+          </div>
+          <!-- SUBSCRIBE AREA -->
+          <div class="subscribe-area">
+            <a href="#payment" class="subscribe-btn">🔔 Subscribe</a>
+            <span style="font-size:0.7rem; color:#af7389;">support the channel</span>
           </div>
           <div class="video-stats">
             <span><span class="icon">⏱️</span> 10:53</span>
@@ -340,6 +535,7 @@
   <script>
     console.log('🎥 Two‑per‑row video gallery · background #f8c8d8 (pink)');
     console.log('📁 Replace video src with your own files in /videos/ or use YouTube iframes.');
+    console.log('🔔 Subscribe buttons open a payment page with QR and payment link.');
   </script>
 </body>
 </html>
