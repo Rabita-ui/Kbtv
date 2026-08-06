@@ -67,7 +67,7 @@
     }
 
     .qr-image {
-      max-width: 180px;
+      max-width: 200px;
       width: 100%;
       height: auto;
       border-radius: 12px;
@@ -78,8 +78,20 @@
 
     .qr-label {
       color: #7a3b4b;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .upi-id-display {
+      background: #fff7fa;
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      border: 1px solid #fad0dd;
+      color: #7a3b4b;
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-top: 0.2rem;
     }
 
     .qr-hint {
@@ -207,7 +219,7 @@
         font-size: 1.6rem;
       }
       .qr-image {
-        max-width: 140px;
+        max-width: 150px;
       }
     }
   </style>
@@ -220,16 +232,24 @@
     <h1>💖 Subscribe</h1>
     <p class="subhead">Support the channel — scan or pay via UPI</p>
 
-    <!-- QR code section -->
+    <!-- QR code section with your UPI details -->
     <div class="qr-section">
-      <!-- Replace the src with your actual QR code image -->
+      <!-- 
+        ⚠️ IMPORTANT: Replace the src below with your actual QR code image.
+        Save your QR code image (e.g., qr-code.png) in the same folder 
+        and use: src="qr-code.png"
+      -->
       <img 
-        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=example@upi&pn=YourChannel&am=100&cu=INR" 
+        src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=thongamlanchenbi11@okicici&pn=Lanchenbi%20Thongam&am=100&cu=INR" 
         alt="UPI Payment QR Code" 
         class="qr-image"
       />
       <div class="qr-label">📱 Scan to pay</div>
-      <div class="qr-hint">(Replace QR code with your own UPI QR)</div>
+      <div class="upi-id-display">Lanchenbi Thongam</div>
+      <div style="font-size:0.8rem; color:#7a3b4b; font-weight:500; background:#f5e1ea; padding:0.2rem 1rem; border-radius:20px;">
+        thongamlanchenbi11@okicici
+      </div>
+      <div class="qr-hint">Scan with any UPI app (Google Pay, PhonePe, Paytm, etc.)</div>
     </div>
 
     <!-- UPI Payment Method Dropdown -->
@@ -245,7 +265,7 @@
       </select>
     </div>
 
-    <!-- Payment link button (opens UPI intent or payment page) -->
+    <!-- Payment link button -->
     <a 
       href="#" 
       class="payment-link-btn" 
@@ -272,15 +292,16 @@
   <script>
     /**
      * Handles the payment action based on the selected UPI method.
-     * Replace the UPI ID and amount with your own details.
+     * UPI ID: thongamlanchenbi11@okicici
+     * Payee: Lanchenbi Thongam
      */
     function handlePayment(event) {
       event.preventDefault();
 
-      // ── EDIT THESE VALUES ──
-      const UPI_ID = 'example@upi';        // Replace with your UPI ID
-      const AMOUNT = '100';                // Replace with your desired amount
-      const PAYEE_NAME = 'YourChannel';    // Replace with your channel name
+      // ── YOUR UPI DETAILS ──
+      const UPI_ID = 'thongamlanchenbi11@okicici';
+      const AMOUNT = '100';                // Change this to your desired amount
+      const PAYEE_NAME = 'Lanchenbi Thongam';
       // ─────────────────────
 
       const selected = document.getElementById('upi-method').value;
@@ -288,13 +309,13 @@
       // Build the UPI deep link
       const upiLink = `upi://pay?pa=${UPI_ID}&pn=${PAYEE_NAME}&am=${AMOUNT}&cu=INR`;
 
-      // Map dropdown selection to app-specific UPI links (optional)
+      // Map dropdown selection to app-specific UPI links
       const appLinks = {
         'google-pay': `https://pay.google.com/gp/p/ui/pay?pa=${UPI_ID}&pn=${PAYEE_NAME}&am=${AMOUNT}&cu=INR`,
         'phonepe': `https://phone.pe/pay?pa=${UPI_ID}&pn=${PAYEE_NAME}&am=${AMOUNT}&cu=INR`,
         'paytm': `https://paytm.com/pay?pa=${UPI_ID}&pn=${PAYEE_NAME}&am=${AMOUNT}&cu=INR`,
         'amazon-pay': `https://pay.amazon.in/pay?pa=${UPI_ID}&pn=${PAYEE_NAME}&am=${AMOUNT}&cu=INR`,
-        'whatsapp-pay': `https://wa.me/91${UPI_ID.replace('@upi', '')}?text=Pay%20${AMOUNT}%20to%20${PAYEE_NAME}`,
+        'whatsapp-pay': `https://wa.me/91${UPI_ID.replace('@okicici', '')}?text=Pay%20${AMOUNT}%20to%20${PAYEE_NAME}`,
         'other': upiLink
       };
 
@@ -310,12 +331,12 @@
         // Desktop: show the UPI link and QR info
         alert(
           `💳 UPI Payment\n\n` +
+          `Payee: ${PAYEE_NAME}\n` +
           `UPI ID: ${UPI_ID}\n` +
           `Amount: ₹${AMOUNT}\n` +
-          `Payee: ${PAYEE_NAME}\n\n` +
-          `Selected: ${selected}\n` +
-          `Link: ${paymentUrl}\n\n` +
-          `On mobile, this will open your UPI app automatically.`
+          `Selected: ${selected}\n\n` +
+          `On mobile, this will open your UPI app automatically.\n` +
+          `You can also scan the QR code above.`
         );
         // Also open in new tab for desktop testing
         window.open(paymentUrl, '_blank');
@@ -323,8 +344,9 @@
     }
 
     console.log('💖 Payment page loaded.');
-    console.log('📁 Edit UPI_ID, AMOUNT, and PAYEE_NAME in the script.');
-    console.log('🔄 Replace QR code image with your own UPI QR.');
+    console.log('📱 UPI ID: thongamlanchenbi11@okicici');
+    console.log('👤 Payee: Lanchenbi Thongam');
+    console.log('🔄 Replace QR code image with your own if needed.');
   </script>
 
 </body>
