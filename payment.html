@@ -74,6 +74,20 @@
       border: 1px solid #fad0dd;
     }
 
+    .qr-image-error {
+      display: none;
+      color: #d47a9a;
+      font-size: 0.8rem;
+      padding: 1rem;
+      background: #fce4ec;
+      border-radius: 12px;
+      margin-top: 0.5rem;
+    }
+
+    .qr-image-error.show {
+      display: block;
+    }
+
     .qr-label {
       color: #7a3b4b;
       font-weight: 600;
@@ -210,17 +224,22 @@
     <h1>💖 Support the Channel</h1>
     <p class="subhead">Scan the QR code or pay via UPI</p>
 
-    <!-- QR Code Section with your uploaded image -->
+    <!-- QR Code Section -->
     <div class="qr-section">
       <!-- 
-        ✅ Using your QR code image uploaded to GitHub
-        The path assumes Qrc.png is in the root of your repository
+        ✅ Using your QR code image from the root folder
+        ✅ The path is "Qrc.png" (case-sensitive!)
       -->
       <img 
         src="Qrc.png" 
         alt="UPI Payment QR Code" 
         class="qr-image"
+        onerror="document.getElementById('qrError').classList.add('show')"
       />
+      
+      <div id="qrError" class="qr-image-error">
+        ⚠️ QR code image not found. Please make sure <strong>Qrc.png</strong> is in the same folder.
+      </div>
       
       <div class="merchant-name">🏪 KABICHANDRA ENTERPRISES</div>
       
@@ -255,10 +274,23 @@
   </div>
 
   <script>
-    console.log('💖 Payment page loaded with QR code from GitHub');
+    console.log('💖 Payment page loaded');
+    console.log('📁 Looking for QR code: Qrc.png in the same folder');
     console.log('🏪 Merchant: KABICHANDRA ENTERPRISES');
     console.log('📱 UPI: 9862728802m@pnb');
-    console.log('📁 QR code image: Qrc.png (in root folder)');
+    
+    // Check if QR code loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      const img = document.querySelector('.qr-image');
+      if (img) {
+        img.addEventListener('load', function() {
+          console.log('✅ QR code loaded successfully!');
+        });
+        img.addEventListener('error', function() {
+          console.log('❌ QR code failed to load. Check if Qrc.png exists.');
+        });
+      }
+    });
   </script>
 
 </body>
